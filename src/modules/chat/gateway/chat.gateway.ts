@@ -17,7 +17,7 @@ import { ChatDto } from '../dto/chat.dto';
     origin: [
       'https://hoppscotch.io',
       'http://localhost:4200',
-      'https://real-chat-client.vercel.app/',
+      'https://real-chat-client.vercel.app',
     ],
   },
 })
