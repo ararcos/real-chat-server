@@ -12,12 +12,12 @@ export class ChatRepository {
     private chatRepository: Repository<ChatEntity>,
     private mapper: ChatMapper,
   ) {}
-
+  //Save message
   async createMessage(chatDto: ChatDto): Promise<ChatEntity> {
     const newMessage = this.mapper.dtoToEntity(chatDto);
     return this.chatRepository.save(newMessage);
   }
-
+  //find All Message with users
   async findAllMessage(): Promise<ChatEntity[]> {
     return this.chatRepository.find({ relations: ['user'] });
   }

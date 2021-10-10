@@ -20,6 +20,7 @@ export class UserService {
     return this.mapper.entityToDto(user);
   }
 
+  //Find user by name
   async findUserByName(name: string): Promise<UserDto> {
     const user = await this.userRepository.getUserByName(name);
     if (!user) {
@@ -28,6 +29,7 @@ export class UserService {
     return this.mapper.entityToDto(user);
   }
 
+  //Find user by name if not exist create new user or return user
   async findUserByNameorCreate(name: string): Promise<UserDto> {
     const user = await this.userRepository.getUserByName(name);
     if (user) {

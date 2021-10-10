@@ -11,8 +11,15 @@ import { UserService } from '../../user/user.service';
 import { UserDto } from '../../user/dto/user.dto';
 import { ChatDto } from '../dto/chat.dto';
 
+//Config Cors
 @WebSocketGateway({
-  cors: { origin: ['https://hoppscotch.io', 'http://localhost:4200'] },
+  cors: {
+    origin: [
+      'https://hoppscotch.io',
+      'http://localhost:4200',
+      'https://real-chat-client.vercel.app/',
+    ],
+  },
 })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
@@ -39,6 +46,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   async handleDisconnect(socket: Socket) {
+    //disconect user
     this.users.splice(this.users.indexOf(socket.data.user), 1);
     // Notify connected clients of current users
     this.server.emit('users', this.users);
@@ -46,8 +54,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
   @SubscribeMessage('chat')
   async onChat(client: Socket, message: ChatDto) {
+    //save messsage
     message.user = client.data.user;
     const newMessage = await this.chatService.createChat(message);
+    //Notify clients of new Message
     client.broadcast.emit('chat', newMessage);
   }
 }
