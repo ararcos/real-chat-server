@@ -1,16 +1,11 @@
 {
     "type": "postgres",
-    "username": "hoszgyddfpprky",
-    "password": "356583c5c5655bb2c3254002cd59033ffff9b9ade07010406077dba5abaef454",
-    "host": "ec2-18-211-194-36.compute-1.amazonaws.com",
-    "port": 5432,
-    "database": "dftvvi0coftsu2",
-    "ssl": true,
-    "extra": {
-        "ssl": {
-            "rejectUnauthorized": false
-        }
-    },
+    "username": "root",
+    "password": "root",
+    "host": "localhost",
+    "port": 5431,
+    "database": "chat",
+    "ssl": false,
     "entities": ["src/**/**/*.entity{.ts,.js}"],
     "migrations": ["src/database/migrations/*{.ts,.js}"],
     "cli": {
