@@ -14,6 +14,6 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(new TypeormExceptionFilter());
-  await app.listen(3000);
+  await app.listen(AppModule.port);
 }
 bootstrap();
